@@ -13,9 +13,9 @@ jobs:
     steps:
       - checkout
       - run: fastlane init
-      - run: sudo locale-gen en_US.UTF-8 \
-    && sudo locale-gen en en_US en_US.UTF-8 \
-    && sudo dpkg-reconfigure locales
+      - run: sudo locale-gen en_US.UTF-8
+      - run: sudo locale-gen en en_US en_US.UTF-8
+      - run: sudo dpkg-reconfigure locales
 
       # Build the app and run tests
       - run:
