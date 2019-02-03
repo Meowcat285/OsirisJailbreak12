@@ -1,16 +1,20 @@
 language: objective-c
-
-rvm: 2.1.1
-install: bundle
-
-before_script: ./script/add-key.sh
-after_script: ./script/remove-key.sh
-script: ./script/travis.sh
-
-env:
-  global:
-  - LANG=en_US.UTF-8
-  - LC_ALL=en_US.UTF-8
-
+osx_image: xcode10.1
 notifications:
   email: false
+branches:
+  only:
+    - master
+before_install:
+  - gem install fastlane --no-ri --no-rdoc --no-document
+jobs:
+  include:
+    - stage: Swiflint
+      script:
+        - ./Pods/SwiftLint/swiftlint --reporter junit
+    - stage: XCTest
+      script:
+        - fastlane scan -s SwiftLint-CITests
+    - stage: XCUITest
+      script:
+        - fastlane scan -s SwiftLint-CIUITests
