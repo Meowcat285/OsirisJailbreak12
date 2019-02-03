@@ -34,8 +34,8 @@
                                     <action selector="rollOne:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XLw-Sw-gSj"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By GeoSn0w (@FCE365) &amp; @_bazad" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="gHO-js-bmS">
-                                <rect key="frame" x="63" y="633" width="249" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="By GeoSn0w (@FCE365) &amp; @_bazad" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="gHO-js-bmS">
+                                <rect key="frame" x="63" y="646" width="249" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -70,7 +70,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="jb_wall" width="368" height="654"/>
-        <image name="osiris" width="300" height="167"/>
+        <image name="jb_wall" width="736" height="1308"/>
+        <image name="osiris" width="600" height="334"/>
     </resources>
 </document>
