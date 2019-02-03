@@ -17,6 +17,7 @@ jobs:
       # Build the app and run tests
       - run:
           name: Build and run tests
+          command: fastlane init
           command: fastlane scan
           environment:
             SCAN_DEVICE: iPhone 6
