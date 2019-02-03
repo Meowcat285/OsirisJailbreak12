@@ -8,11 +8,16 @@ jobs:
 
     # Specify the Xcode version to use
     macos:
-      xcode: "8.3.3"
+      xcode: "10.1.0"
 
     steps:
       - checkout
-
+      - run: sudo apt-get clean && sudo apt-get -y update && sudo apt-get install -y locales
+      - run: sudo locale-gen en_US.UTF-8
+      - run: sudo locale-gen en en_US en_US.UTF-8
+      - run: sudo dpkg-reconfigure locales
+      - run: sudo gem install fastlane
+      - run: fastlane init
 
       # Build the app and run tests
       - run:
