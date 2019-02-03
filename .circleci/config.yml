@@ -12,14 +12,8 @@ jobs:
 
     steps:
       - checkout
+      - fastlane init
      
-     # Fastlane INIT
-      commands:
-  sayhello:
-    description: "fastlane init"
-    steps:
-      - run: fastlane init
-
 
       # Build the app and run tests
       - run:
