@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - checkout
-      - run: <command>
+      - run: fastlane init
 
       # Build the app and run tests
       - run:
