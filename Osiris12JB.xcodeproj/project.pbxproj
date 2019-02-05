@@ -14,6 +14,8 @@
 		2143CA0A20E7BDA900AFB745 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2143CA0420E7BDA800AFB745 /* AppDelegate.m */; };
 		2143CA0B20E7BDA900AFB745 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2143CA0620E7BDA900AFB745 /* ViewController.m */; };
 		2143CA2D20E7C59600AFB745 /* kmem.c in Sources */ = {isa = PBXBuildFile; fileRef = 2143CA1A20E7C59600AFB745 /* kmem.c */; };
+		5892844A22091BBA00FCF316 /* qilin.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 5892844922091BBA00FCF316 /* qilin.o */; };
+		5892844B22091BBA00FCF316 /* qilin.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 5892844922091BBA00FCF316 /* qilin.o */; };
 		58D324F5220798A700B995E9 /* voucher_swap.c in Sources */ = {isa = PBXBuildFile; fileRef = 736424AA220182970029FD97 /* voucher_swap.c */; };
 		58D324F6220798A700B995E9 /* kernel_memory.c in Sources */ = {isa = PBXBuildFile; fileRef = 736424922201815C0029FD97 /* kernel_memory.c */; };
 		58D324F7220798A700B995E9 /* exploit_additions.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F9A40A2201E99F00A1F682 /* exploit_additions.c */; };
@@ -38,7 +40,6 @@
 		58D3250A220798A700B995E9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2143C9F720E7BD6A00AFB745 /* main.m */; };
 		58D3250B220798A700B995E9 /* beginOsiris.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F9A41E2201EC5A00A1F682 /* beginOsiris.c */; };
 		58D3250C220798A700B995E9 /* kernel_slide.c in Sources */ = {isa = PBXBuildFile; fileRef = 736424962201815C0029FD97 /* kernel_slide.c */; };
-		58D3250E220798A700B995E9 /* qilin.o in Frameworks */ = {isa = PBXBuildFile; fileRef = A1C7A7A42203428600ADC775 /* qilin.o */; };
 		58D32510220798A700B995E9 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 7364248E2201815C0029FD97 /* README */; };
 		58D32511220798A700B995E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2143CA0220E7BDA800AFB745 /* Main.storyboard */; };
 		58D32512220798A700B995E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2143C9F120E7BD6A00AFB745 /* Assets.xcassets */; };
@@ -57,7 +58,6 @@
 		736424B422018DCD0029FD97 /* kc_parameters.c in Sources */ = {isa = PBXBuildFile; fileRef = 736424AF22018DCD0029FD97 /* kc_parameters.c */; };
 		736424B522018DCD0029FD97 /* pac.c in Sources */ = {isa = PBXBuildFile; fileRef = 736424B022018DCD0029FD97 /* pac.c */; };
 		A1C7A7A32203422D00ADC775 /* kernel_call.c in Sources */ = {isa = PBXBuildFile; fileRef = A1C7A7A22203422D00ADC775 /* kernel_call.c */; };
-		A1C7A7A52203428600ADC775 /* qilin.o in Frameworks */ = {isa = PBXBuildFile; fileRef = A1C7A7A42203428600ADC775 /* qilin.o */; };
 		D6EF120A22026C11009BECC6 /* offsets.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EF120922026C11009BECC6 /* offsets.m */; };
 		D6F9A4142201E99F00A1F682 /* exploit_additions.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F9A40A2201E99F00A1F682 /* exploit_additions.c */; };
 		D6F9A4152201E99F00A1F682 /* kexecute.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F9A40C2201E99F00A1F682 /* kexecute.c */; };
@@ -94,9 +94,8 @@
 		2143CA1520E7C59600AFB745 /* kmem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kmem.h; sourceTree = "<group>"; };
 		2143CA1A20E7C59600AFB745 /* kmem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kmem.c; sourceTree = "<group>"; };
 		2143CA1C20E7C59600AFB745 /* patchfinder64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = patchfinder64.h; sourceTree = "<group>"; };
-		58D324F22207987300B995E9 /* Osiris12JB copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Osiris12JB copy-Info.plist"; path = "/Users/alexschmitt 1/Documents/OsirisJailbreak12meow/Osiris12JB copy-Info.plist"; sourceTree = "<absolute>"; };
+		5892844922091BBA00FCF316 /* qilin.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = qilin.o; sourceTree = "<group>"; };
 		58D32517220798A700B995E9 /* Osiris12JBTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Osiris12JBTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		58D32518220798A700B995E9 /* Osiris12JB copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Osiris12JB copy2-Info.plist"; path = "/Users/alexschmitt 1/Documents/OsirisJailbreak12meow/Osiris12JB copy2-Info.plist"; sourceTree = "<absolute>"; };
 		7364247E2201815C0029FD97 /* kernel_memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kernel_memory.h; sourceTree = "<group>"; };
 		7364247F2201815C0029FD97 /* log.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log.c; sourceTree = "<group>"; };
 		736424802201815C0029FD97 /* parameters.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = parameters.c; sourceTree = "<group>"; };
@@ -127,7 +126,6 @@
 		736424B122018DCD0029FD97 /* user_client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_client.h; sourceTree = "<group>"; };
 		736424B222018DCD0029FD97 /* kc_parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kc_parameters.h; sourceTree = "<group>"; };
 		A1C7A7A22203422D00ADC775 /* kernel_call.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kernel_call.c; sourceTree = "<group>"; };
-		A1C7A7A42203428600ADC775 /* qilin.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; name = qilin.o; path = Osiris/Frameworks/qilin.o; sourceTree = "<group>"; };
 		D6EF120822026C11009BECC6 /* offsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = offsets.h; sourceTree = "<group>"; };
 		D6EF120922026C11009BECC6 /* offsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = offsets.m; sourceTree = "<group>"; };
 		D6F9A40A2201E99F00A1F682 /* exploit_additions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = exploit_additions.c; sourceTree = "<group>"; };
@@ -149,7 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1C7A7A52203428600ADC775 /* qilin.o in Frameworks */,
+				5892844A22091BBA00FCF316 /* qilin.o in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,7 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58D3250E220798A700B995E9 /* qilin.o in Frameworks */,
+				5892844B22091BBA00FCF316 /* qilin.o in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,8 +168,6 @@
 				2143C9E720E7BD6900AFB745 /* Osiris */,
 				2143C9E620E7BD6900AFB745 /* Products */,
 				D6F9A4232201FBA200A1F682 /* Frameworks */,
-				58D324F22207987300B995E9 /* Osiris12JB copy-Info.plist */,
-				58D32518220798A700B995E9 /* Osiris12JB copy2-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -301,7 +297,7 @@
 		D6F9A4232201FBA200A1F682 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A1C7A7A42203428600ADC775 /* qilin.o */,
+				5892844922091BBA00FCF316 /* qilin.o */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
