@@ -16,6 +16,7 @@
 		2143CA2D20E7C59600AFB745 /* kmem.c in Sources */ = {isa = PBXBuildFile; fileRef = 2143CA1A20E7C59600AFB745 /* kmem.c */; };
 		5892844A22091BBA00FCF316 /* qilin.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 5892844922091BBA00FCF316 /* qilin.o */; };
 		5892844B22091BBA00FCF316 /* qilin.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 5892844922091BBA00FCF316 /* qilin.o */; };
+		58BF9854220920470089726D /* Osiris12JBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58BF9853220920470089726D /* Osiris12JBTests.m */; };
 		58D324F5220798A700B995E9 /* voucher_swap.c in Sources */ = {isa = PBXBuildFile; fileRef = 736424AA220182970029FD97 /* voucher_swap.c */; };
 		58D324F6220798A700B995E9 /* kernel_memory.c in Sources */ = {isa = PBXBuildFile; fileRef = 736424922201815C0029FD97 /* kernel_memory.c */; };
 		58D324F7220798A700B995E9 /* exploit_additions.c in Sources */ = {isa = PBXBuildFile; fileRef = D6F9A40A2201E99F00A1F682 /* exploit_additions.c */; };
@@ -79,6 +80,16 @@
 		};
 /* End PBXBuildRule section */
 
+/* Begin PBXContainerItemProxy section */
+		58BF9856220920470089726D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2143C9DD20E7BD6900AFB745 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2143C9E420E7BD6900AFB745;
+			remoteInfo = Osiris12JB;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		2143C9E520E7BD6900AFB745 /* Osiris12JB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Osiris12JB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2143C9F120E7BD6A00AFB745 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -95,6 +106,9 @@
 		2143CA1A20E7C59600AFB745 /* kmem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kmem.c; sourceTree = "<group>"; };
 		2143CA1C20E7C59600AFB745 /* patchfinder64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = patchfinder64.h; sourceTree = "<group>"; };
 		5892844922091BBA00FCF316 /* qilin.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = qilin.o; sourceTree = "<group>"; };
+		58BF9851220920470089726D /* Osiris12JBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Osiris12JBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		58BF9853220920470089726D /* Osiris12JBTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Osiris12JBTests.m; sourceTree = "<group>"; };
+		58BF9855220920470089726D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58D32517220798A700B995E9 /* Osiris12JBTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Osiris12JBTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7364247E2201815C0029FD97 /* kernel_memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kernel_memory.h; sourceTree = "<group>"; };
 		7364247F2201815C0029FD97 /* log.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = log.c; sourceTree = "<group>"; };
@@ -151,6 +165,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		58BF984E220920470089726D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		58D3250D220798A700B995E9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -166,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				2143C9E720E7BD6900AFB745 /* Osiris */,
+				58BF9852220920470089726D /* Osiris12JBTests */,
 				2143C9E620E7BD6900AFB745 /* Products */,
 				D6F9A4232201FBA200A1F682 /* Frameworks */,
 			);
@@ -176,6 +198,7 @@
 			children = (
 				2143C9E520E7BD6900AFB745 /* Osiris12JB.app */,
 				58D32517220798A700B995E9 /* Osiris12JBTest.app */,
+				58BF9851220920470089726D /* Osiris12JBTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -204,6 +227,15 @@
 				2143CA1A20E7C59600AFB745 /* kmem.c */,
 			);
 			path = exploit;
+			sourceTree = "<group>";
+		};
+		58BF9852220920470089726D /* Osiris12JBTests */ = {
+			isa = PBXGroup;
+			children = (
+				58BF9853220920470089726D /* Osiris12JBTests.m */,
+				58BF9855220920470089726D /* Info.plist */,
+			);
+			path = Osiris12JBTests;
 			sourceTree = "<group>";
 		};
 		7364247D2201815C0029FD97 /* voucher_swap */ = {
@@ -322,6 +354,24 @@
 			productReference = 2143C9E520E7BD6900AFB745 /* Osiris12JB.app */;
 			productType = "com.apple.product-type.application";
 		};
+		58BF9850220920470089726D /* Osiris12JBTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 58BF985A220920470089726D /* Build configuration list for PBXNativeTarget "Osiris12JBTests" */;
+			buildPhases = (
+				58BF984D220920470089726D /* Sources */,
+				58BF984E220920470089726D /* Frameworks */,
+				58BF984F220920470089726D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				58BF9857220920470089726D /* PBXTargetDependency */,
+			);
+			name = Osiris12JBTests;
+			productName = Osiris12JBTests;
+			productReference = 58BF9851220920470089726D /* Osiris12JBTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		58D324F3220798A700B995E9 /* Osiris12JBTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58D32514220798A700B995E9 /* Build configuration list for PBXNativeTarget "Osiris12JBTest" */;
@@ -357,6 +407,10 @@
 							};
 						};
 					};
+					58BF9850220920470089726D = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 2143C9E420E7BD6900AFB745;
+					};
 				};
 			};
 			buildConfigurationList = 2143C9E020E7BD6900AFB745 /* Build configuration list for PBXProject "Osiris12JB" */;
@@ -374,6 +428,7 @@
 			targets = (
 				2143C9E420E7BD6900AFB745 /* Osiris12JB */,
 				58D324F3220798A700B995E9 /* Osiris12JBTest */,
+				58BF9850220920470089726D /* Osiris12JBTests */,
 			);
 		};
 /* End PBXProject section */
@@ -387,6 +442,13 @@
 				2143CA0920E7BDA900AFB745 /* Main.storyboard in Resources */,
 				2143C9F220E7BD6A00AFB745 /* Assets.xcassets in Resources */,
 				2143CA0820E7BDA900AFB745 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		58BF984F220920470089726D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +497,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		58BF984D220920470089726D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58BF9854220920470089726D /* Osiris12JBTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		58D324F4220798A700B995E9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -467,6 +537,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		58BF9857220920470089726D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2143C9E420E7BD6900AFB745 /* Osiris12JB */;
+			targetProxy = 58BF9856220920470089726D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2143CA0020E7BDA800AFB745 /* LaunchScreen.storyboard */ = {
@@ -654,6 +732,49 @@
 			};
 			name = Release;
 		};
+		58BF9858220920470089726D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ND635HY66V;
+				INFOPLIST_FILE = Osiris12JBTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = alexschmitt.Osiris12JBTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Osiris12JB.app/Osiris12JB";
+			};
+			name = Debug;
+		};
+		58BF9859220920470089726D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ND635HY66V;
+				INFOPLIST_FILE = Osiris12JBTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = alexschmitt.Osiris12JBTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Osiris12JB.app/Osiris12JB";
+			};
+			name = Release;
+		};
 		58D32515220798A700B995E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -728,6 +849,15 @@
 			buildConfigurations = (
 				2143C9FC20E7BD6A00AFB745 /* Debug */,
 				2143C9FD20E7BD6A00AFB745 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		58BF985A220920470089726D /* Build configuration list for PBXNativeTarget "Osiris12JBTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				58BF9858220920470089726D /* Debug */,
+				58BF9859220920470089726D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

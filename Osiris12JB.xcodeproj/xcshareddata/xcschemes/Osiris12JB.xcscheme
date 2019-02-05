@@ -29,6 +29,16 @@
       codeCoverageEnabled = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "58BF9850220920470089726D"
+               BuildableName = "Osiris12JBTests.xctest"
+               BlueprintName = "Osiris12JBTests"
+               ReferencedContainer = "container:Osiris12JB.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
