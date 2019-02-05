@@ -1,3 +1,5 @@
 language: objective-c
 osx_image: xcode10.1
-script: xcodebuild -workspace Osiris12JB.xcodeproj/project.xcworkspace -scheme Osiris12JB -sdk iphonesimulator12.1 ONLY_ACTIVE_ARCH=NO
+xcode_workspace: Osiris12JB.xcodeproj/project.xcworkspace
+xcode_scheme: Osiris12JBTest
+xcode_destination: platform=iOS Simulator,OS=10.1,name=iPad Pro (9.7-inch)
