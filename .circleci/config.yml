@@ -1,3 +1,274 @@
+# This code is licensed from CircleCI to the user under the MIT license. See
+# https://circleci.com/orbs/registry/licensing for details.
 version: 2.1
-orbs:
-  ios: wordpress-mobile/ios@0.0.18
+
+description: |
+  Simplify common tasks for building and testing iOS projects
+
+executors:
+  default:
+    macos:
+      xcode: "10.1.0"
+
+jobs:
+  test:
+    description: |
+      Build and test an iOS project using xcodebuild
+    parameters:
+      # Build options
+      workspace:
+        description: Workspace parameter to be passed to xcodebuild. e.g. MyProject.xcworkspace. A workspace or a project is required.
+        type: string
+        default: "Osiris12JB.xcodeproj/project.xcworkspace"
+      project:
+        description: Project parameter to be passed to xcodebuild. e.g. MyProject.xcodeproj. A workspace or a project is required.
+        type: string
+        default: "Osiris12JB.xcodeproj"
+      scheme:
+        description: Scheme parameter for xcodebuild. e.g. MyProject. A scheme or a target is required.
+        type: string
+        default: "Osiris12JB"
+      target:
+        description: Target parameter for xcodebuild. e.g. MyProject. A scheme or a target is required.
+        type: string
+        default: "Osiris12JB"
+      configuration:
+        description: Configuration paramter for xcodebuild. e.g. Debug.
+        type: string
+        default: Debug
+      ios-version:
+        description: The iOS simulator version to run tests on.
+        type: string
+        default: "12.1"
+      device:
+        description: The iOS simulator device to run tests on.
+        type: string
+        default: iPhone XS
+      # Dependency options
+      cache-prefix:
+        type: string
+        default: dependency-cache
+      bundle-install:
+        type: boolean
+        default: true
+      bundler-working-directory:
+        type: string
+        default: .
+      pod-install:
+        type: boolean
+        default: true
+      cocoapods-working-directory:
+        type: string
+        default: .
+      carthage-update:
+        type: boolean
+        default: false
+      carthage-working-directory:
+        type: string
+        default: .
+
+    executor: default
+    steps:
+      - run:
+          # xcodebuild can behave unpredictably if the simulator is not already booted, so we boot it explicitly here
+          name: Boot simulator
+          command: |
+            # Get the UDID of the "<< parameters.device >>" with "iOS << parameters.ios-version >>"
+            UDID=$(xcrun simctl list -j | jq -r "[.devices[\"iOS << parameters.ios-version >>\"][] | select (.name == \"<< parameters.device >>\" and .availability == \"(available)\")][0] | .udid")
+            xcrun simctl boot $UDID # Boot simulator in the background
+            echo "export SIMULATOR_UDID=$UDID" >> $BASH_ENV
+          background: true
+      - checkout
+      - install-dependencies:
+          cache-prefix: << parameters.cache-prefix >>
+          bundle-install: << parameters.bundle-install >>
+          bundler-working-directory: << parameters.bundler-working-directory >>
+          pod-install: << parameters.pod-install >>
+          cocoapods-working-directory: << parameters.cocoapods-working-directory >>
+          carthage-update: << parameters.carthage-update >>
+          carthage-working-directory: << parameters.carthage-working-directory >>
+      - run:
+          name: Prepare xcodebuild parameters
+          command: |
+            optional_argument () {
+              OPTION="$1"
+              VALUE="$2"
+              if [[ ! -z "$VALUE" ]]; then
+                echo -n "${OPTION} '${VALUE}'"
+              fi
+            }
+
+            XCODEBUILD_ARGS=""
+            XCODEBUILD_ARGS="${XCODEBUILD_ARGS} $(optional_argument "-workspace" "<< parameters.workspace >>")"
+            XCODEBUILD_ARGS="${XCODEBUILD_ARGS} $(optional_argument "-project" "<< parameters.project >>")"
+            XCODEBUILD_ARGS="${XCODEBUILD_ARGS} $(optional_argument "-scheme" "<< parameters.scheme >>")"
+            XCODEBUILD_ARGS="${XCODEBUILD_ARGS} $(optional_argument "-target" "<< parameters.target >>")"
+            XCODEBUILD_ARGS="${XCODEBUILD_ARGS} -configuration '<< parameters.configuration >>'"
+            XCODEBUILD_ARGS="${XCODEBUILD_ARGS} -sdk iphonesimulator"
+
+            echo "export XCODEBUILD_ARGS='${XCODEBUILD_ARGS}'" >> $BASH_ENV
+
+            echo "Finished building xcodebuild parameters:"
+            echo "${XCODEBUILD_ARGS}"
+      - run:
+          name: Build
+          command: |
+            xcodebuild build-for-testing $XCODEBUILD_ARGS | xcpretty
+      - run:
+          name: Wait for simulator
+          command: |
+            touch $BASH_ENV
+            while [ -z "$SIMULATOR_UDID" ]; do
+                sleep 1
+                source $BASH_ENV
+            done
+      - run:
+          name: Test
+          command: |
+            xcodebuild test-without-building $XCODEBUILD_ARGS -destination "platform=iOS Simulator,id=$SIMULATOR_UDID" | xcpretty -r junit
+      - store_test_results:
+          path: build/reports
+  validate-podspec:
+    description: |
+      Run 'pod lib lint' on a provided .podspec file.
+    parameters:
+      podspec-path:
+        type: string
+      bundle-install:
+        type: boolean
+        default: true
+      update-specs-repo:
+        type: boolean
+        default: false
+    executor: default
+    steps:
+      - checkout
+      - when:
+          condition: << parameters.bundle-install >>
+          steps:
+            -  install-dependencies:
+                 pod-install: false
+                 bundle-install: true
+      - run:
+          name: Fetch CocoaPods Specs
+          command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+      - when:
+          condition: << parameters.update-specs-repo >>
+          steps:
+            - run:
+                name: Update CocoaPods Specs
+                command: <<# parameters.bundle-install >>bundle exec<</ parameters.bundle-install >> pod repo update
+      - run:
+          name: Validate podspec
+          command: <<# parameters.bundle-install >>bundle exec<</ parameters.bundle-install >> pod lib lint "<< parameters.podspec-path >>"
+
+commands:
+  install-dependencies:
+    description: |
+      Installs dependencies in the current workspace and caches the results.
+    parameters:
+      cache-prefix:
+        type: string
+        default: dependency-cache
+      bundle-install:
+        type: boolean
+        default: true
+      bundler-working-directory:
+        type: string
+        default: .
+      pod-install:
+        type: boolean
+        default: true
+      cocoapods-working-directory:
+        type: string
+        default: .
+      carthage-update:
+        type: boolean
+        default: false
+      carthage-working-directory:
+        type: string
+        default: .
+    steps:
+      - restore_cache:
+          keys:
+            - "<< parameters.cache-prefix >>-\
+               <<# parameters.bundle-install >>{{ checksum \"<< parameters.bundler-working-directory >>/Gemfile.lock\" }}-<</ parameters.bundle-install >>\
+               <<# parameters.pod-install >>{{ checksum \"<< parameters.cocoapods-working-directory >>/Podfile.lock\" }}-<</ parameters.pod-install >>\
+               <<# parameters.carthage-update >>{{ checksum \"<< parameters.carthage-working-directory >>/Cartfile.resolved\" }}-<</ parameters.carthage-update >>"
+      - when:
+          condition: << parameters.bundle-install >>
+          steps:
+            - run:
+                name: Bundle install
+                command: cd "<< parameters.bundler-working-directory >>" && bundle install --path=vendor/bundle
+      - when:
+          condition: << parameters.pod-install >>
+          steps:
+            - run:
+                name: CocoaPods check
+                command: |
+                  cd "<< parameters.cocoapods-working-directory >>"
+
+                  function lockfile_error () {
+                    echo "Podfile and Podfile.lock do not match. Please run 'pod install' and try again."
+                  }
+                  trap lockfile_error ERR
+
+                  # This verifies that the PODFILE CHECKSUM in Podfile.lock matches Podfile
+                  PODFILE_SHA1=$(ruby -e "require 'yaml';puts YAML.load_file('Podfile.lock')['PODFILE CHECKSUM']")
+                  echo "$PODFILE_SHA1 *Podfile" | shasum -c
+
+                  # Remove trap (so we don't print the lockfile error)
+                  trap - ERR
+
+                  if diff Podfile.lock Pods/Manifest.lock; then
+                    echo "Podfile.lock matches Pods/Manifest.lock. Skipping installing pods ..."
+                    echo 'export SKIP_POD_INSTALL=1' >> $BASH_ENV
+                  else
+                    echo "Podfile.lock does not match Pods/Manifest.lock. Pods will be installed ..."
+                  fi
+            - run:
+                name: Fetch CocoaPods Specs (if needed)
+                command: test $SKIP_POD_INSTALL || curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+            - run:
+                name: Pod Install (if needed)
+                command: | 
+                  cd "<< parameters.cocoapods-working-directory >>"
+
+                  if [ -n "$SKIP_POD_INSTALL" ]; then
+                    echo "Skipping pod install ..."
+                  else
+                    # Get the shasum of Podfile.lock before installing pods
+                    LOCKFILE_SHASUM=$(shasum Podfile.lock)
+
+                    # Install pods
+                    <<# parameters.bundle-install >>bundle exec<</ parameters.bundle-install >> pod install
+
+                    # Check that Podfile.lock was unchanged by pod install
+                    function lockfile_error () {
+                      echo "Podfile.lock was changed by 'pod install'. Please run 'pod install' and try again."
+                    }
+                    trap lockfile_error ERR
+
+                    echo
+                    echo "Checking that Podfile.lock was not modified by 'pod install'"
+                    echo "${LOCKFILE_SHASUM}" | shasum -c > /dev/null
+                  fi
+                environment:
+                  COCOAPODS_DISABLE_STATS: true
+      - when:
+          condition: << parameters.carthage-update >>
+          steps:
+            - run:
+                name: Carthage Update
+                command: cd "<< parameters.carthage-working-directory >>" && carthage update --cache-builds
+
+      - save_cache:
+          key: "<< parameters.cache-prefix >>-\
+                <<# parameters.bundle-install >>{{ checksum \"<< parameters.bundler-working-directory >>/Gemfile.lock\" }}-<</ parameters.bundle-install >>\
+                <<# parameters.pod-install >>{{ checksum \"<< parameters.cocoapods-working-directory >>/Podfile.lock\" }}-<</ parameters.pod-install >>\
+                <<# parameters.carthage-update >>{{ checksum \"<< parameters.carthage-working-directory >>/Cartfile.resolved\" }}-<</ parameters.carthage-update >>"
+          paths:
+            - << parameters.bundler-working-directory >>/vendor/bundle
+            - << parameters.cocoapods-working-directory >>/Pods/
+            - << parameters.carthage-working-directory >>/Carthage/
